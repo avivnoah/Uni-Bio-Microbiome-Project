@@ -1,2 +1,0 @@
-{"ts": "2026-06-12T08:18:47.603846+00:00", "event": "instructions_loaded", "state_version": "v10", "wf": null, "phase": null, "task_id": null, "agent": "hook", "decision": "logged", "reason": "session_start", "file_path": "/Users/avivnoah/.claude/CLAUDE.md", "memory_type": "User"}
-{"ts": "2026-06-12T08:18:47.612317+00:00", "event": "instructions_loaded", "state_version": "v10", "wf": null, "phase": null, "task_id": null, "agent": "hook", "decision": "logged", "reason": "session_start", "file_path": "/Users/avivnoah/.claude/rules/code-style.md", "memory_type": "User"}
