@@ -1,1 +1,8 @@
 .claude/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.playwright-mcp/
+slide*.png
+.impeccable/
