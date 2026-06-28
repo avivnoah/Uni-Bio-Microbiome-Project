@@ -1,0 +1,17 @@
+{
+  "metadata_feature_importance": {
+    "BMI_C": 0.653,
+    "AGE": 0.287,
+    "GENDER": 0.027,
+    "CENTER_C_France": 0.017,
+    "CENTER_C_Germany": 0.016
+  },
+  "metadata_only_cv_balacc": 0.34,
+  "confounders": {
+    "age_vs_shannon_spearman": 0.083
+  },
+  "disease_pred_balacc": {
+    "both_omics_complete": 0.26,
+    "microbiome_only_all": 0.191
+  }
+}

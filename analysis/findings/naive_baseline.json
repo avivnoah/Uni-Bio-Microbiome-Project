@@ -1,0 +1,89 @@
+{
+  "naive_distance_baseline": {
+    "drop_metab_10pct": {
+      "mean": {
+        "mantel_r": 0.957,
+        "p": 0.005
+      },
+      "median": {
+        "mantel_r": 0.957,
+        "p": 0.005
+      },
+      "knn": {
+        "mantel_r": 0.956,
+        "p": 0.005
+      },
+      "rf": {
+        "mantel_r": 0.955,
+        "p": 0.005
+      }
+    },
+    "drop_metab_30pct": {
+      "mean": {
+        "mantel_r": 0.848,
+        "p": 0.005
+      },
+      "median": {
+        "mantel_r": 0.848,
+        "p": 0.005
+      },
+      "knn": {
+        "mantel_r": 0.851,
+        "p": 0.005
+      },
+      "rf": {
+        "mantel_r": 0.852,
+        "p": 0.005
+      }
+    },
+    "drop_metab_50pct": {
+      "mean": {
+        "mantel_r": 0.78,
+        "p": 0.005
+      },
+      "median": {
+        "mantel_r": 0.779,
+        "p": 0.005
+      },
+      "knn": {
+        "mantel_r": 0.75,
+        "p": 0.005
+      },
+      "rf": {
+        "mantel_r": 0.771,
+        "p": 0.005
+      }
+    }
+  },
+  "partner_naive_imputation_r2": {
+    "10%": {
+      "mean": -0.002,
+      "median": -0.008,
+      "knn": 0.395,
+      "rf": 0.537
+    },
+    "20%": {
+      "mean": -0.002,
+      "median": -0.013,
+      "knn": 0.38,
+      "rf": 0.474
+    },
+    "40%": {
+      "mean": -0.002,
+      "median": -0.013,
+      "knn": 0.329,
+      "rf": 0.431
+    },
+    "60%": {
+      "mean": -0.003,
+      "median": -0.011,
+      "knn": 0.243,
+      "rf": 0.29
+    }
+  },
+  "disease_with_without": {
+    "without_imputation_microbiome_only": 0.191,
+    "with_imputation_micro_plus_recovered_metab": 0.183,
+    "real_both_omics_upper_bound": 0.26
+  }
+}

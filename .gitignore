@@ -6,3 +6,4 @@ __pycache__/
 .playwright-mcp/
 slide*.png
 .impeccable/
+# (fonts embedded into HTML at build; raw woff2 kept for rebuilds)

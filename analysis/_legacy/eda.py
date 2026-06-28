@@ -33,7 +33,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.impute import KNNImputer
 from sklearn.cross_decomposition import PLSRegression
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.model_selection import cross_val_score, StratifiedKFold
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -323,17 +323,20 @@ for frac in (0.1, 0.3, 0.5):
     obs = np.ones(n, bool); obs[miss] = False
     res = {}
 
-    # (a) column mean of observed metabolome
+    # whole metabolome dropped for `miss` -> recover it 4 ways, then re-distance
+    # (a) population mean / (b) population median of observed metabolome
     me_mean = Xme.values.copy(); me_mean[miss] = Xme.values[obs].mean(0)
-    # (b) KNN using microbiome side as the bridge
+    me_median = Xme.values.copy(); me_median[miss] = np.median(Xme.values[obs], axis=0)
+    # (c) KNN: borrow from neighbours found via the microbiome we DO have
     stk = Xme.values.copy(); stk[miss] = np.nan
     me_knn = KNNImputer(n_neighbors=10).fit_transform(
         np.hstack([Xmi.values, stk]))[:, Xmi.shape[1]:]
-    # (c) PLS cross-modal regression microbiome -> metabolome (honest competitor)
-    pls = PLSRegression(n_components=15).fit(Xmi.values[obs], Xme.values[obs])
-    me_pls = Xme.values.copy(); me_pls[miss] = pls.predict(Xmi.values[miss])
+    # (d) RF: predict the missing metabolome from microbiome (cross-modal)
+    rfreg = RandomForestRegressor(n_estimators=60, max_depth=12, n_jobs=-1, random_state=0)
+    rfreg.fit(Xmi.values[obs], Xme.values[obs])
+    me_rf = Xme.values.copy(); me_rf[miss] = rfreg.predict(Xmi.values[miss])
 
-    for name, me in (("mean", me_mean), ("knn", me_knn), ("pls", me_pls)):
+    for name, me in (("mean", me_mean), ("median", me_median), ("knn", me_knn), ("rf", me_rf)):
         pcs = PCA(2, random_state=0).fit_transform(
             StandardScaler().fit_transform(np.hstack([Xmi.values, me])))
         r, p = mantel(gt, squareform(pdist(pcs)), 199)

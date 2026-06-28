@@ -1,0 +1,15 @@
+{
+  "metadata_missing_by_center": {
+    "Danemark": 1.0,
+    "France": 0.02,
+    "Germany": 0.0
+  },
+  "permanova_group": {
+    "F": 3.72,
+    "p": 0.005
+  },
+  "permanova_center": {
+    "F": 8.84,
+    "p": 0.005
+  }
+}

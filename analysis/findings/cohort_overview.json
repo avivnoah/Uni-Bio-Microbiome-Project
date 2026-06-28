@@ -1,0 +1,43 @@
+{
+  "modality_structure": {
+    "n_total": 1738,
+    "complete_both": 1042,
+    "microbiome_only": 348,
+    "metabolome_only": 348
+  },
+  "group_counts": {
+    "1": 230,
+    "2a": 239,
+    "2b": 128,
+    "3": 528,
+    "4": 107,
+    "5": 149,
+    "6": 90,
+    "7": 18,
+    "8": 249
+  },
+  "metadata_missing_pct": {
+    "PATGROUPFINAL_C": 0.0,
+    "GENDER": 27.4,
+    "BMI_C": 28.3,
+    "AGE": 27.4,
+    "CENTER_C": 0.0
+  },
+  "omics_missing_by_center": {
+    "complete": {
+      "Danemark": 285,
+      "France": 450,
+      "Germany": 307
+    },
+    "metab_only": {
+      "Danemark": 106,
+      "France": 139,
+      "Germany": 103
+    },
+    "micro_only": {
+      "Danemark": 85,
+      "France": 154,
+      "Germany": 109
+    }
+  }
+}

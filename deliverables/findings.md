@@ -106,3 +106,24 @@ distance** — our exact deliverable. Never applied to microbiome+metabolome →
 01 overview · 02 missing-by-center · 03 alpha-diversity · 04 microbiome-PCoA ·
 06 between-group distance · 07 differential abundance · 08 metabolome trends ·
 09 cross-omics correlation
+
+---
+
+## Addendum — partner exploration: review + integration
+
+Partner sent `general_exploration.ipynb`, `metadata_exploration.ipynb`, `naive_modeling.ipynb`, `exploration_results.pdf`. Re-ran on our data (`analysis/partner_eda.py`) and folded into the unified deck.
+
+**Review verdict: strong, and it converges with our independent analysis** — imbalance, ~20% omics missing (= our 348+348), country batch effect (2b≈German, 7≈French, 4 no-Germany), weak cross-omics coupling (ρ<0.25 ≈ our 0.38 max).
+
+**Her additions we adopted (restyled to paper/ink/rose):**
+- Age & BMI by group — obesity 2a/2b youngest (BMI>40); diabetes/CVD 3–6 older (~60). Age/BMI are prime confounders.
+- Country composition by group (batch) and gender by group.
+- **Metadata-only disease prediction**: BMI (0.65) + age (0.29) dominate; metadata-only RF **balanced acc 0.34 > both-omics 0.26 > microbiome-only 0.19** → demographics out-predict omics for the disease label, reinforcing that *distances*, not labels, are the target.
+- Per-group differential counts vs control (FDR<0.05): up to 131 species and 77 metabolites (the metabolite counts reproduced hers almost exactly: 68/73/77/15…).
+
+**Two edits I made on review:**
+1. **Framing** — her work read as classic disease EDA; re-anchored everything to the missing-modality **distance-matrix** goal.
+2. **Naive baseline corrected + dual-framed.** Her original ranked *mean* best (R²=0.218) — an artifact of raw-scale features + scoring over all cells. Re-run on **standardised** targets, scored on **held-out cells only**:
+   - *Scattered within-modality cells* → **KNN recovers** (R² 0.40→0.24 as missing rises), mean≈0.
+   - *Whole modality dropped* (the real setting) → **mean ties/beats** (distance-Mantel 0.96/0.89/0.77), cross-modal r≤0.38 caps it.
+   - One conclusion: **within-modality is easy; the wall is cross-modality** — exactly what the pipeline must beat.
